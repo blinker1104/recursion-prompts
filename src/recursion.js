@@ -528,18 +528,15 @@ var numToText = function(str) {
 
 // 37. Return the number of times a tag occurs in the DOM.
 var tagCount = function(tag, node) {
-    if(typeof(node) === 'string'){
-        //node = document.getElementById(node);
-    }
     if(node === undefined){
-        return tagCount(tag, document.body.childNodes);
+        return tagCount(tag, document.body);
     }
         
     let res = 0;
-    for(let v of node){
+    for(let v of node.childNodes){
         if(v.tagName === undefined) continue;
         if(v.childNodes.length > 0){
-            res += tagCount(tag, v.childNodes);
+            res += tagCount(tag, v);
         }
         if(v.tagName.toUpperCase() == tag.toUpperCase()) res ++;
 
