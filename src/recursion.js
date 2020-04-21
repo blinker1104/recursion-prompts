@@ -549,4 +549,19 @@ var mergeSort = function(array) {
 // console.log(obj2); // {a:1,b:{bb:{bbb:2}},c:3}
 // obj1 === obj2 // false
 var clone = function(input) {
+    var result;
+    if(input.constructor == Array) result = new Array;
+    if(input.constructor == Object) result = new Object;
+    
+    for(let i in input){
+        console.log(input[i] + ' -> ' + input[i].constructor + ' ');
+        if(typeof(input[i]) == 'object'){
+            let res = clone(input[i]);
+            result[i] = res;
+        }   
+        else{
+            result[i] = input[i];
+        }
+    }
+    return result;
 };
